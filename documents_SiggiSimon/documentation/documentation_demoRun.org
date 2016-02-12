@@ -1,0 +1,29 @@
+* Background
+This was our first attempt at creating a frame for running several rules compiled in the lab course. The idea is to be able to use any of the rules present in the /includeAll.py/ file and not have to worry about importing rules. 
+
+* Usage
+
+In [[test][Shortcomings]] order to use this setup, you need the /demo_run.py/ as a run-file ($ mod -f demo_run.py), as well as /includeAll.py/ and /molecules.py/
+The easiest way to deal with this is to just do a
+#+begin_src shell
+scp grpraktikum@prak10.bioinf.uni-leipzig.de:~/Documents/corerules/* . 
+#+end_src
+in the folder you are in. You should have all the necessary files and not worry about dependencies.
+** demo_run.py
+The most important things to do in this file are to specify which rules you want to use in your experiment. You use the rules of interest within the *strat1* strategy as the main step of the rule. Just put them in in the 
+#+begin_src python
+        >> r2_2_1
+#+end_src
+line. *Be aware that you cannot combine rules and sets of rules!!* (see Shortcomings for a discussion of this.
+** molecules.py
+The molecules-file specifies which molecules are present in the chemical environment. It contains a list of the molecules the rules can be applied to, and should be as specific to the experiment as possible in order to not generate too many unnecessary graphs. Since mod uses the smile-notation ([[https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system]]), the molecules should be specified in this form. The molecules are organized as minimal molecules for specific reactions. If you are not interested in a reaction, just comment it out. If you want to use more complex molecules, include them via the smile-notation, preferably following the convention used in /molecules.py/
+** includeAll.py
+This file contains all rules that could be applied to the experiment. It imports these rules as sets (from the corresponding *_*_*.py or *_*_*_*.py files, which have to be present in the same folder (see above)).
+You shouldn't have to touch this file. If you feel like you want to, please come to *PRAK04* or *PRAK05* to discuss why you feel like it. Maybe you've spot a mistake or something that can be improved
+
+* Shortcomings
+Since strategies specified in /includeAll.py/ can be either lists of strategies (if the strategy is split into different part of the reaction), or single strategies (if one rules captures the entire reaction), you might get a type error in the console, saying 
+#+begin_src sh
+TypeError: unhashable type: 'set'
+#+end_src
+. This is because you try to put elements and lists into a list, so you would have a set of sets. If you want to do that (and are willing to trade some flexibility for compatibility), please use /runAsSets.py/ (for documentation see [[documentation runAsSets]]). If you have an idea how to solve this or have an interesting application that needs solving this issue, please come talk to us at *PRAK04* or *PRAK05*

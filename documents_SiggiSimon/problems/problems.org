@@ -1,0 +1,10 @@
+* Rules
+** Rule 2_3_1 takes ages. All other rules combined doesn't take too long!
+* smiles
+- Wildcards, especially for halogens (X) are not known in smiles. Have to be specified explicitly (concrete atoms)
+- Implicit aromats problematic (see c1cccc(-C=O)c1 vs. C1=CC=CC(-C=O)=C1); aromatic ring can't be embedded in left side of the rule
+-> Solved by SMARTS: extension of SMILES where wildcards and specific bonds (e.g. aromatic) are known
+mod seems to be not able to interpret SMARTS
+* Improvement mod
+Base on SMARTS notation
+How to cancel a mod-execution?

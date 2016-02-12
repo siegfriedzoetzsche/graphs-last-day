@@ -1,0 +1,202 @@
+* <2016-02-01 Mon>
+** sourcen
+#+NAME source mod stuff
+#+BEGIN_SRC shell
+ls /homes/brauerei2
+source /homes/brauerei2/jlandersen/shared/setEnv.sh
+#+END_SRC
+** account
+| grpraktikum |
+| DCwdTniNs76 |
+** von Sarah
+#+NAME code von sarah
+#+BEGIN_SRC shell
+mkdir Name
+cd Name
+scp -r grpraktikum@prak10:~/sarah/Final .
+#+END_SRC
+** start RuleEditor
+#+NAME start RuleEditor
+#+BEGIN_SRC shell
+cd ~/Siggi/vonSarah/Final
+java -jar RuleEditor.jar
+
+
+#+END_SRC
+
+   
+** RuleEditor
+   there is an edit 'both sides' checkbox
+** tasks
+   1. catalan game
+   2. chemistry
+      autocatalytic cycles
+      
+** playground
+   [[http://cheminf.imada.sdu.dk/mod/playground.html][playground]]
+** try MedØlDatschgerl
+   1. copy 2 files from [[/u/home/grpraktikum/rojin/ex/1.py]] and [[/u/home/grpraktikum/rojin/ex/run1.py]]
+   2. run:
+      #+NAME run MedØlDatschgerl
+      #+BEGIN_SRC shell
+      mod -f run1.py
+      #+END_SRC
+*** example
+#+NAME mod example
+#+BEGIN_SRC mod
+ethanol = smiles("CCO", name="Ethanol")
+alsoEthanol = graphGMLString("""
+graph [
+	node [ id 0 label "C" ]
+	node [ id 1 label "C" ]
+	node [ id 2 label "O" ]
+	node [ id 3 label "H" ]
+	node [ id 4 label "H" ]
+	node [ id 5 label "H" ]
+	node [ id 6 label "H" ]
+	node [ id 7 label "H" ]
+	node [ id 8 label "H" ]
+	edge [ source 1 target 0 label "-" ]
+	edge [ source 2 target 1 label "-" ]
+	edge [ source 3 target 0 label "-" ]
+	edge [ source 4 target 0 label "-" ]
+	edge [ source 5 target 0 label "-" ]
+	edge [ source 6 target 1 label "-" ]
+	edge [ source 7 target 1 label "-" ]
+	edge [ source 8 target 2 label "-" ]
+]
+""", name="Also Ethanol")
+ethanol.print()
+alsoEthanol.print()
+#+END_SRC
+
+#+NAME mod example
+#+BEGIN_SRC mod
+catalanLevel2 = graphGMLString("""
+graph [
+	node [ id 0 label "0" ]
+	node [ id 1 label "0" ]
+	node [ id 2 label "0" ]
+	node [ id 3 label "0" ]
+	node [ id 4 label "0" ]
+	node [ id 5 label "0" ]
+	node [ id 6 label "0" ]
+	node [ id 7 label "0" ]
+	node [ id 8 label "0" ]
+	node [ id 9 label "0" ]
+	node [ id 10 label "0" ]
+	node [ id 11 label "0" ]
+	node [ id 12 label "0" ]
+	node [ id 13 label "0" ]
+
+	edge [ source 0 target 1 label "-" ]
+	edge [ source 0 target 2 label "-" ]
+	edge [ source 0 target 3 label "-" ]
+	edge [ source 0 target 4 label "-" ]
+	edge [ source 0 target 5 label "-" ]
+	edge [ source 0 target 6 label "-" ]
+
+	edge [ source 1 target 7 label "-" ]
+	edge [ source 2 target 7 label "-" ]
+
+	edge [ source 3 target 8 label "-" ]
+	edge [ source 4 target 8 label "-" ]
+
+	edge [ source 5 target 9 label "-" ]
+	edge [ source 6 target 9 label "-" ]
+
+	edge [ source 7 target 10 label "-" ]
+
+	edge [ source 8 target 11 label "-" ]
+
+	edge [ source 9 target 12 label "-" ]
+]
+""", name="Catalan Level 2")
+catalanLevel2.print()
+#+END_SRC
+* <2016-02-02 Tue>
+** levels.txt umbauen
+
+#+NAME bla
+#+BEGIN_SRC emacs-lisp
+(defun levelsToGML()
+  (interactive)
+  (beginning-of-buffer)
+  ;(save-excursion (query-replace-regexp "|.*\n\n" "\n\n"))
+  ;(save-excursion (query-replace-regexp "\nE " " = graphGMLString(\"\"\"\ngraph [\n"))
+  ;(save-excursion (query-replace-regexp "\\([A-Z ]+\\)\\( = graphGMLString\\)\\([^§]+?\\)\n\n"					"\\1\\2\\3\n]\n\"\"\", name=\"\\1\")\n\n"))
+  ;(save-excursion (query-replace-regexp "\\([A-Z]\\) \\([A-Z]\\)" "\\1_\\2"))
+  (save-excursion (query-replace-regexp "[\s]*\\([0-9]+\\),\\([0-9]+\\)" "    edge[source \\1 target \\2 label=\"\"]\n"))
+)
+#+END_SRC
+
+]
+""", name="Catalan Level 2")
+** template for flows
+#+BEGIN_SRC shell
+scp -r prak01:
+   catalan-template
+#+END_SRC
+   
+* <2016-02-03 Wed>
+** constraints zu regeln Hinzufuegen
+
+** Lecture: chemistry stuff
+
+*** autocatalytic cycles
+
+    #+RESULTS:
+    #+BEGIN_LaTeX
+    \begin{equation}
+    \label{eq:1}
+    \mathrm{F} + \mathrm{A} \rightarrow 2 \mathrm{A} + \mathrm{W}
+    \end{equation}
+    #+END_LaTeX
+
+    How to specify autocatalysis in a linear programming language.
+
+    Build a formose reaction.
+    Get constraints on the size.
+    Restrict the size of the molecules in terms of number of C atoms.
+    What do the pathways look like?
+
+    We want to have it as a integer linear program.
+
+** [[file:///homes/brauerei2/jlandersen/shared/doc/index.html][mod manual]]
+
+* <2016-02-04 Thu>
+** [[https://de.wikibooks.org/wiki/Reaktionsmechanismen_der_Organischen_Chemie][OC Mechanismen]]
+
+** for which combination of rules do we get a complete universe?
+** for which combination of rules do we only get a subset of the universe?
+** interesting case: is there a set of starting molecules, that will get you a bigt universe
+*** so grow molecules -> we need rules that add C-C bonds
+*** 
+
+* Praktikumsabschluss
+** <2016-02-22 Mon> 17:30
+
+  1. Given G solve the catalan game
+  2. For the levels:
+     - How long does it take to solve?
+     - Is the machine faster than you?
+  3. Inverse: how many graph with k=4, 5, ... k nodes are Catalan-solvable
+
+** Pizza
+** Beer
+* Seminartermine
+|------------------+--------------|
+| <2016-02-23 Tue> | 10:30--12:30 |
+|------------------+--------------|
+| <2016-02-25 Thu> | 10:30--13:30 |
+|                  | 14:00--15:30 |
+|                  | 16:00--17:30 |
+|------------------+--------------|
+| <2016-02-26 Fri> | 10:30--12:30 |
+|                  | 14:00--16:00 |
+|------------------+--------------|
+
+
+* Zu schliessen lassen:
+  3. Stock Frau Pregel oder irgendjemanden fragen
+  445 
