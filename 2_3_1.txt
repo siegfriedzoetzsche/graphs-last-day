@@ -1,0 +1,4 @@
+comment "elementary sodium has to be added to the universe for it is electron donor"
+comment "requires two molecules at starting point"
+comment "acyloin reaction seems to be correct in terms of in- and outfluxes"
+

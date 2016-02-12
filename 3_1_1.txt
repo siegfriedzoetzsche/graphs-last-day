@@ -1,0 +1,2 @@
+comment "one of the products have a negative carge at one oxygen atom --> neutralized it with hydrogen atom"
+comment "acyloin reaction seems to be correct in terms of in- and outfluxes"

@@ -1,0 +1,38 @@
+rule [
+	ruleID "1.2.6 Prileschajew-Oxidation 1"
+	left [
+		edge [ source 3 target 4 label "-" ]
+		edge [ source 6 target 7 label "=" ]
+		edge [ source 4 target 5 label "-" ]
+		edge [ source 1 target 2 label "=" ]
+		edge [ source 1 target 3 label "-" ]
+	]
+	context [
+		node [ id 1 label "C" vis2d [ x -314.43609619140625 y 343.00750732421875 ] ]
+		node [ id 2 label "O" vis2d [ x -183.60903930664062 y 416.6917419433594 ] ]
+		node [ id 3 label "O" vis2d [ x -300.90228271484375 y 198.64663696289062 ] ]
+		node [ id 4 label "O" vis2d [ x -197.14288330078125 y 146.01504516601562 ] ]
+		node [ id 5 label "H" vis2d [ x -100.90228271484375 y 207.669189453125 ] ]
+		node [ id 6 label "C" vis2d [ x -346.0150451660156 y -56.992431640625 ] ]
+		node [ id 7 label "C" vis2d [ x -159.54888916015625 y -52.481201171875 ] ]
+		node [ id 8 label "R" vis2d [ x -443.7593994140625 y 452.7819519042969 ] ]
+		node [ id 9 label "R1" vis2d [ x -425.71429443359375 y 69.32333374023438 ] ]
+		node [ id 10 label "R2" vis2d [ x -415.18798828125 y -157.74432373046875 ] ]
+		node [ id 11 label "R3" vis2d [ x -31.729339599609375 y 81.3533935546875 ] ]
+		node [ id 12 label "R4" vis2d [ x -18.19549560546875 y -144.21051025390625 ] ]
+		edge [ source 7 target 11 label "-" ]
+		edge [ source 6 target 9 label "-" ]
+		edge [ source 7 target 12 label "-" ]
+		edge [ source 6 target 10 label "-" ]
+		edge [ source 8 target 1 label "-" ]
+	]
+	right [
+		edge [ source 6 target 7 label "-" ]
+		edge [ source 4 target 7 label "-" ]
+		edge [ source 4 target 6 label "-" ]
+		edge [ source 1 target 2 label "-" ]
+		edge [ source 1 target 3 label "=" ]
+		edge [ source 2 target 5 label "-" ]
+	]
+
+]
